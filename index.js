@@ -10,11 +10,11 @@ var randomData = [];
 var maxRandomData = 500;
 var lastMessageReceived = new Date().getTime();
 var seedEmitDelay = 5000;
-
+var DEBUG = process.env.NODE_ENV == 'development';
 
 
 var app = http.createServer(function (request, response) {
-    console.log('New request: %s',request.url);
+    DEBUG && console.log('New request: %s',request.url);
     var filePath = request.url;
 
     if(filePath == '/api/seed'){
@@ -43,9 +43,9 @@ io.sockets.on('connection', function (socket) {
     	if(!isNaN(data.message)){
     		randomData.push(data.message);
         	lastMessageReceived = new Date().getTime()
-        	console.log('new message received: ' + data.message );
+        	DEBUG && console.log('new message received: ' + data.message );
         	if(randomData.length > maxRandomData ){
-        		console.log('reached max size for data, deleting ' + Math.floor(randomData.length / 2) + ' random entires');
+        		DEBUG && console.log('reached max size for data, deleting ' + Math.floor(randomData.length / 2) + ' random entires');
         		for (var x = 0; x <= Math.floor(randomData.length / 2); x++){
         			randomData.splice(Math.floor(Math.random() * randomData.length), 1);
         		}
@@ -56,10 +56,10 @@ io.sockets.on('connection', function (socket) {
     socket.on('clientStatus', function (data) {
     	if(data.seedStream){
         	socket.seedStream = true;
-        	console.log('Client resumed' );
+        	DEBUG && console.log('Client resumed' );
     	}else{
     		socket.seedStream = false;
-    		console.log('Client paused' );
+    		DEBUG && console.log('Client paused' );
     	}
     });
     socket.on('disconnect', function() {
@@ -75,17 +75,17 @@ io.sockets.on('connection', function (socket) {
 // This interval is responsible for sending data to clients as well as handling
 // cases where we don't have enough data available
 setInterval(function(){
-    console.log('Number of connected clients:  %s', io.engine.clientsCount);
+    DEBUG && console.log('Number of connected clients:  %s', io.engine.clientsCount);
 	for (i = 0; i < clients.length; i++) { 
 		if (!clients[i].seedStream) continue;
 	    	clients[i].emit('message', {message: seed() });
-   	    	console.log('Data sent');
+   	    	DEBUG && console.log('Data sent');
     }
 }, seedEmitDelay);
 
 var seed = function(){
     if(randomData.length == 0 && new Date().getTime() - lastMessageReceived > 300){//5000
-        console.log('Not enough data, random created');
+        DEBUG && console.log('Not enough data, random created');
         return Math.floor(Math.random()*1000000000, 10);
     }else if(randomData.length > 0){
         return randomData.shift();

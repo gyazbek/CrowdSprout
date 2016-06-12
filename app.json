@@ -1,0 +1,7 @@
+{
+  "name": "CrowdSprout",
+  "description": "Crowd sourced random data generator using Node and Socket.io",
+  "repository": "https://github.com/gyazbek/CrowdSprout",
+  "logo": "https://github.com/gyazbek/CrowdSprout/blob/master/static/assets/images/crest.png",
+  "keywords": ["node", "socket.io", "static"]
+}

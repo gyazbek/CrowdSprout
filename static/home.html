@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="CloudSprout">
+		<meta name="author" content="gyazbek">
+		<title>CrowdSprout - Crowdsourced Seed Generator</title>
+		<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/assets/css/style.css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body id="top">
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header page-scroll">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#top">CrowdSprout</a>
+				</div>
+				<div class="collapse navbar-collapse" id="navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="hidden">
+							<a href="#page-top"></a>
+						</li>
+						<li class="page-scroll">
+							<a href="#top">Home</a>
+						</li>
+						<li class="page-scroll">
+							<a href="#about">About</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+		<!-- Header -->
+		<header>
+			<div class="container">
+				<div class="row-fluid">
+					<div class="col-lg-12">
+						<div class="intro">
+							<div class="row">
+								<h1 class="col-md-12">Crowdsourced Seed Generator</h1>
+							</div>
+							<div class="row form-inline">
+								<select id="randomType" class="typeSelect col-md-2">
+									<option selected value="password">Password</option>
+									<option value="integer">Number</option>
+								</select>
+								<div id="numOptionsGroup" class="optionsHolder col-md-4" style="display:none;">
+									<input class="typeSelect form-control" name="minNum" id="minNum" type="number" value="1">
+									<input class="typeSelect form-control" name="maxNum" id="maxNum" type="number" value="9000">
+								</div>
+								<div id="passOptionsGroup" class="optionsHolder col-md-6">
+									<input class="typeSelect  col-md-2 form-control" name="passLength" id="passLength" min="0" type="number" value="15">
+									<div class="passOptChkboxContainer">
+										<input class="form-control" id="passOptNum" type="checkbox" autocomplete="off" checked>
+										<label for="passOptNum">Numbers</label>
+										<input class="form-control" id="passOptMixedCase" type="checkbox" autocomplete="off">
+										<label for="passOptMixedCase">Mixed Case</label>
+										<input class="form-control" id="passOptSymbol" type="checkbox" autocomplete="off">
+										<label for="passOptSymbol">Symbols</label>
+									</div>
+								</div>
+							</div>
+							<hr >
+							<div class="input-group result-holder">
+								<input type="text" class="generated-text form-group" aria-label="..." id="generated-text">
+								<span class="input-group-btn " id="basic-addon1">  <button id="pausePlayButton" class="btn btn-default pause-play-btn" type="button"><span class="glyphicon 
+	glyphicon glyphicon-pause" aria-hidden="true"></span></button>
+								</span>
+							</div>
+						</div>
+						<br>
+						<div class="generator-history-container">
+							<ul id="generator-history-list">
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</header>
+		<!-- About Section -->
+		<section id="about">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<h2>About</h2>
+						<p>CrowdSprout is a crowdsourced random number generator. The random actions that users take on this website are converted into numbers, which becomes seeds. This number is then uniquely shared with other users. When a user receives a seed, that piece of data is used to further generate the random number you see.</p>
+						<p>
+							Every password generation occurs on the client side, so your end result is not shared with anyone. The server doesn't store seed data outside of a temporary queue. if there isn't enough activity, the server might generate a random seed based on as-random-as-possible data, such as cpu usage or temperature, if available.
+						</p>
+						<hr>
+						<img class="img-responsive shield-img" src="/assets/images/crest.png" alt="Logo">
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- Footer -->
+		<footer class="text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h3>Disclaimer</h3> By using this site you agree to contribute scroll and mouse position data to help others generate random data. If you do not wish to help, toggle below to set a cookie so we can remember.
+						<br>
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-primary ">
+								<input type="radio" name="contributeRadio" id="contributeRadio" autocomplete="off" value="1"> On
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="contributeRadio" id="contributeRadio" autocomplete="off" value="0"> Off
+							</label>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<h3>Contribute</h3> Are you a pretty good coder with an idea to make this better, or do you just hate how the code is indented? Go on to Github and contribute to our code base.
+						<ul class="list-inline">
+							<li>
+								<a href="https://github.com/gyazbek/CrowdSprout" class=""><i class="fa fa-fw fa-github"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						Last updated June 10th, 2016
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Scripts -->
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+		<script src="/assets/scripts/script.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "CloudSprout",
+  "version": "0.0.1",
+  "description": "Crowdsourced Seed Generator",
+  "dependencies": {
+    "socket.io": "latest"
+  },
+  "author": "Gui"
+}

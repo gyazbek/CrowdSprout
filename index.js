@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path')
 var os = require('os')
 
-var port = process.env.NODE_ENV == 'production' ? 80 : 3700;
+var port = process.env.PORT || 3700;
 var clients = [];
 var randomData = [];
 var maxRandomData = 500;

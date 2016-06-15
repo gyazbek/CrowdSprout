@@ -2,6 +2,8 @@
 
 CrowdSprout is a crowd based seed generator built on Nodejs and Socket.io.
 
+[![Build Status](https://travis-ci.org/gyazbek/CrowdSprout.svg?branch=master)](https://travis-ci.org/gyazbek/CrowdSprout)
+
 ### Demo 
 * https://crowdsprout.herokuapp.com/
 * https://crowdsprout.herokuapp.com/api/seed
